@@ -12,9 +12,9 @@ module ActiveScheduler
           args = job_data['arguments']
         end
 
-        named_args ? klass.perform_later(**args) : klass.perform_later(*args)
+        named_args ? klass.perform_now(**args) : klass.perform_now(*args)
       else
-        klass.perform_later
+        klass.perform_now
       end
     end
 

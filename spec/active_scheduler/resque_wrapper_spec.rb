@@ -141,14 +141,14 @@ describe ActiveScheduler::ResqueWrapper do
     after { described_class.perform job_data }
 
     it "gets the true job class and ActiveJob's it up" do
-      expect(TestKlass).to receive :perform_later
+      expect(TestKlass).to receive :perform_now
     end
 
     context "with arguments" do
       let(:job_data) { {'job_class' => 'TestKlass', 'arguments' => [1, 2]} }
 
       it "passes the arguments" do
-        expect(TestKlass).to receive(:perform_later).with 1, 2
+        expect(TestKlass).to receive(:perform_now).with 1, 2
       end
     end
 
@@ -162,7 +162,7 @@ describe ActiveScheduler::ResqueWrapper do
       end
 
       it "passed the arguments as Named args" do
-        expect(TestKlass).to receive(:perform_later).with(foo: 1, bar: 2)
+        expect(TestKlass).to receive(:perform_now).with(foo: 1, bar: 2)
       end
     end
   end
